@@ -1,8 +1,11 @@
 class Solution(object):
     def smallerNumbersThanCurrent(self, nums):
-        count = [0]*len(nums)
+        temp = sorted(nums)
+        counting  = {}
+        result = []
+        for i in range(len(temp)):
+            if temp[i] not in counting :
+                counting [temp[i]] = i
         for i in range(len(nums)):
-            for j in range(len(nums)):
-                if nums[i]>nums[j]:
-                    count[i] += 1
-        return count
+            result.append(counting [nums[i]])
+        return result
