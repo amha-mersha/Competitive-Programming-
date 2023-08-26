@@ -16,7 +16,7 @@ class Solution(object):
                 
         
         return result 
-# More compact and faster version with the same principle 
+# More compact and faster version with the same principle, seem's like not having if statement makes it faster.  
 class Solution(object):
     def pancakeSort(self, arr):
         n = len(arr)
