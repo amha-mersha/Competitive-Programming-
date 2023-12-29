@@ -1,11 +1,15 @@
-class Solution:
-    def largestNumber(self, nums: List[int]) -> str:
-        for i in range(len(nums)):
-            nums[i] = str(nums[i])
-        def compare(a,b):
-            if a+b > b+a:
-                return -1
-            else:
-                return 1
-        nums.sort(key = cmp_to_key(compare))
-        return str(int("".join(nums)))
+class Solution(object):
+    def largestNumber(self, nums):
+        if (sum(nums)) == 0:
+            return "0"
+        def compare(x,y):
+            return x+y > y+x
+        nums = sorted(map(str,nums),reverse=True)
+        j = 1
+        for i in range(len(nums)-1):
+            j = i+1
+            while j < len(nums):
+                if not compare(nums[i],nums[j]):
+                    nums[i],nums[j] = nums[j],nums[i]
+                j += 1
+        return "".join(nums)
