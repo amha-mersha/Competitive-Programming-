@@ -1,18 +1,16 @@
 class Solution(object):
     def pancakeSort(self, arr):
-        i = len(arr)
+        n = len(arr)
         result = []
-        while i > 0:
-            if max(arr[:i]) == arr[i-1]:
-                i -= 1
+        for i in range(n,0,-1):
+            j = arr.index(i)
+            if arr[n-1] == i:
+                n -= 1
                 continue
-            elif arr[0] != max(arr[:i]):
-                mxIdx= arr.index(max(arr[:i]))
-                result.append(mxIdx+1)
-                arr = list(reversed(arr[:mxIdx+1])) + arr[mxIdx+1:] 
-            arr = list(reversed(arr[:i])) + arr[i:]
-            result.append(i)
-            i -= 1
-                
-        
-        return result 
+            elif arr[0] != i:
+                arr[:j+1] = arr[:j+1][::-1]
+                result.append(j+1)
+            arr[:n] = arr[:n][::-1]
+            result.append(n)
+            n -= 1
+        return result   
